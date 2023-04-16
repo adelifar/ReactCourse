@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 })
 app.post('/login', async (req, res) => {
     const {email, password} = req.body;
-    if (!email || !password) res.status(400).send("All input is required");
+    if (!email || !password) res.status(400).send({message:"All input is required"});
     console.log(email);
     const existingUser=data.find(u=>u.email==email)
     console.log(existingUser);
@@ -32,19 +32,25 @@ app.post('/login', async (req, res) => {
         const token = jwt.sign({email}, MY_SECRET, {expiresIn: "2h"})
         res.send({email,token});
 
-    }else    res.status(400).send('Invalid Credentials')
+    }else    res.status(400).send({message:'Invalid Credentials'})
 
 
 });
 app.post('/register', async (req, res) => {
     const {email, password} = req.body;
-    if (!email || !password) res.status(400).send("All input is required");
-    if (data.find(u => u.email === email)) res.status(409).send("User already exists");
+    if (!email || !password) {
+        res.status(400).send({message:"All input is required"});
+        return;
+    }
+    if (data.find(u => u.email === email)) {
+        res.status(409).send({message:"User already exists"});
+        return;
+    }
     const encryptedPassword = await bcrypt.hash(password, 10);
     const token = jwt.sign({email}, MY_SECRET, {expiresIn: "2h"})
     let user = {email, encryptedPassword, token};
     data.push(user);
-    res.status(200).json(user);
+    res.send(user);
     console.log(data)
 });
 app.post('/profile',auth,(req,res)=>{

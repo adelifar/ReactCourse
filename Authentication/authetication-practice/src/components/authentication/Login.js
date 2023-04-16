@@ -1,22 +1,29 @@
+import { useRef } from "react";
 import Button from "../ui/Button";
-import Card from "../ui/Card";
 import styles from './Login.module.css';
-import {Link} from "react-router-dom";
 
-const Login = () => {
+const Login = (props) => {
+    const emailInputRef=useRef();
+    const passwordInputRef=useRef();
+    const submitHandler=e=>{
+        e.preventDefault();
+        const email=emailInputRef.current.value;
+        const password=passwordInputRef.current.value;
+        props.onSubmit({email,password});
+    }
     return <>
         <h2>Login</h2>
-        <form>
+        <form onSubmit={submitHandler}>
             <div className={styles.group}>
                 <label htmlFor="email">Your Email</label>
-                <input type="email" id="email"/>
+                <input type="email" id="email" ref={emailInputRef} required/>
             </div>
             <div className={styles.group}>
                 <label htmlFor="password">Your Password</label>
-                <input type="password" id="password"/>
+                <input type="password" id="password" ref={passwordInputRef} required/>
             </div>
             <div>
-                <Button>Login</Button>
+               {!props.loading && <Button>Login</Button>}
             </div>
         </form>
     </>
