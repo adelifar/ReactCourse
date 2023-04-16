@@ -1,0 +1,14 @@
+.button {
+    background-color: #01a6f0;
+    color: white;
+    padding: 0.8rem 1.7rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1.3rem;
+    text-decoration: unset;
+
+}
+
+.button:hover, .button:active {
+    background-color: #012690;
+}

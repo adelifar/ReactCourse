@@ -1,0 +1,19 @@
+.navigation{
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+    background-color: #01a6f0;
+    color: #eeeeee;
+    max-height: 5rem;
+}
+.logo{
+    font-size: 2rem;
+}
+.link{
+    padding-right: 2rem;
+    text-decoration: auto;
+    color: #cccccc;
+}
+.active{
+    color: white;
+}
