@@ -7,10 +7,10 @@ const verifyToken = (req, res, next) => {
 
 
         const decoded = jwt.verify(token, MY_SECRET);
-        req.email = decoded.email;
+        req.body.email = decoded.email;
     } catch (err) {
         return res.status(401).send('Invalid token');
     }
-    return next();
+    next();
 }
-module.exports = verifyToken;
+module.exports = verifyToken

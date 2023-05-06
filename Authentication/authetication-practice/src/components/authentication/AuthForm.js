@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Card from "../ui/Card";
 import styles from "./AuthForm.module.css";
 import Login from "./Login";
 import Signup from "./Signup";
+import AuthContext from "../../store/auth-context";
+import { useNavigate } from "react-router-dom";
 
 const AuthForm = () => {
   const [isLogin, setLogin] = useState(true);
   const [isLoading, setLoading] = useState(false);
+  const authCtx=useContext(AuthContext);
+  const navigate=useNavigate();
   const loginToggleHandler = (e) => {
     e.preventDefault();
     setLogin((isLogin) => !isLogin);
@@ -26,18 +30,21 @@ const AuthForm = () => {
     }).then((res) => {
       setLoading(false);
       if (res.ok) {
-        if (isLogin) {
-          console.log("user logged in");
-        } else {
-          console.log("user created");
-        }
-      } else {
-        //error
-        res.json().then((data) => {
-          alert(data.message);
-        });
+        return res.json();
       }
-    });
+        else{
+          //error
+          return res.json().then(data=>{
+            throw new Error(data.message)
+          })
+        }
+
+        
+    }).then(data=>{
+      console.log(data);
+      authCtx.login(data.token);
+      navigate('/')
+    }).catch(er=>alert(er.message));
   };
 
   return (
