@@ -42,7 +42,7 @@ const AuthForm = () => {
         
     }).then(data=>{
       console.log(data);
-      authCtx.login(data.token);
+      authCtx.login(data.token,5);
       navigate('/')
     }).catch(er=>alert(er.message));
   };
