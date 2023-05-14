@@ -6,17 +6,18 @@ import {Navigate, Route, Routes} from "react-router-dom";
  */
 import Layout from "./components/Layout/Layout";
 import NotFound from "./pages/NotFound";
-import {Suspense, useContext} from "react";
-import Profile from "./pages/Profile";
-import Auth from "./pages/Auth";
-import Welcome from "./pages/Welcome";
+import React, { Suspense, useContext} from "react";
+
 import AuthContext from './store/auth-context';
 
+const Profile=React.lazy(()=>import("./pages/Profile"))
+const Auth=React.lazy(()=>import("./pages/Auth"))
+const Welcome=React.lazy(()=>import("./pages/Welcome"))
 
 function App() {
     const authCtx=useContext(AuthContext);
     return <Layout>
-        <Suspense fallback={<p>Loading....</p>}>
+        <Suspense fallback={<h2>Loading....</h2>}>
             <Routes>
                {/* {authCtx.isLoggedIn && <Route path={'/profile'} element={<Profile/>}/>} */}
                <Route path='/profile' element={authCtx.isLoggedIn && <Profile/> || !authCtx.isLoggedIn && <Navigate to={'/'} replace/>}/>
@@ -25,7 +26,7 @@ function App() {
 
                 <Route path='*' element={<NotFound/>}/>
             </Routes>
-        </Suspense>
+            </Suspense>
     </Layout>
 }
 
