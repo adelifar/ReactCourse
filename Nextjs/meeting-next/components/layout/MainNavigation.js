@@ -1,5 +1,5 @@
 import classes from './MainNavigation.module.css';
-
+import Link from 'next/link';
 function MainNavigation() {
 
   return (
@@ -8,10 +8,10 @@ function MainNavigation() {
       <nav>
         <ul>
           <li>
-            <Link to='/'>All Meetings</Link>
+            <Link href='/'>All Meetings</Link>
           </li>
           <li>
-            <Link to='/new-meeting'>Add New Meeting</Link>
+            <Link href='/new-meeting'>Add New Meeting</Link>
           </li>
         </ul>
       </nav>
