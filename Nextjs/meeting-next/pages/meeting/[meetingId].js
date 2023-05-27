@@ -16,13 +16,23 @@ const MyMeetings = [
     description: "Second meeting description",
   },
 ];
-const MeetingDetailsPage = () => {
-  const router = useRouter();
-  const meetingId = router.query.meetingId;
+const MeetingDetailsPage = (props) => {
+  return <MeetingDetail {...props.meeting} />;
+};
+export const getStaticProps = async (context) => {
+  console.log(context);
+  const meetingId = context.params.meetingId;
   const meeting = MyMeetings.find((m) => m.id == meetingId);
-
-  return (
-    <MeetingDetail {...meeting} />
-  );
+  return {
+    props: {
+      meeting: meeting,
+    },
+  };
+};
+export const getStaticPaths = async () => {
+  return {
+    fallback: false,
+    paths: [{ params: { meetingId: "1" } }, { params: { meetingId: "2" } }],
+  };
 };
 export default MeetingDetailsPage;
