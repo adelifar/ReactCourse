@@ -1,0 +1,24 @@
+[
+
+  {
+    "id":1,
+    "title": "meeting1",
+    "image": "https://baamarc.com/fa/wp-content/uploads/2022/07/%D8%AE.jpg",
+    "address": "ADDRESS 1",
+    "description": "sdfw"
+  },
+  {
+    "id":2,
+    "title": "meeting 2",
+    "image": "https://baamarc.com/fa/wp-content/uploads/2022/07/%D8%AE.jpg",
+    "address": "addr 2",
+    "description": "s;dlfka;sldkja;klsd a;lsdfj"
+  },
+  {
+    "id":3,
+    "title": "tosinso meeting",
+    "image": "https://baamarc.com/fa/wp-content/uploads/2022/07/%D8%AE.jpg",
+    "address": "Karaj",
+    "description": "Shahin vila"
+  }
+]

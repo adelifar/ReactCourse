@@ -1,5 +1,6 @@
 // import { useEffect, useLayoutEffect, useState } from "react";
 import MeetingList from "../components/meetings/MeetingList";
+import fsPromise from "fs/promises";
 const MyMeetings = [
   {
     id: 1,
@@ -22,7 +23,7 @@ const HomePage = (props) => {
   //   //send request to server
   //   setLoadedMeetings(MyMeetings);
   // },[])
-  return  <MeetingList meetings={props.meeting}/>
+  return <MeetingList meetings={props.meeting} />;
 };
 
 //pre render
@@ -34,18 +35,22 @@ const HomePage = (props) => {
 //       meeting:MyMeetings
 //     },revalidate:3600   //seconds
 //   }
-// } //build 
+// } //build
 
 //SSR server side rendering
-export const getServerSideProps=async (context)=>{
+export const getServerSideProps = async (context) => {
   //runs on server
   //fetch data from server
-  const req=context.req;
-  const res=context.res;
-  return{
-    props:{
-      meeting:MyMeetings
-    }
-  }
-}
+  const req = context.req;
+  const res = context.res;
+  const filePath = "data.json";
+  const jsonData = await fsPromise.readFile(filePath);
+  const savedData = JSON.parse(jsonData);
+
+  return {
+    props: {
+      meeting: savedData,
+    },
+  };
+};
 export default HomePage;
