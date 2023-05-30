@@ -1,4 +1,5 @@
 // import { useEffect, useLayoutEffect, useState } from "react";
+import Head from "next/head";
 import MeetingList from "../components/meetings/MeetingList";
 import fsPromise from "fs/promises";
 const MyMeetings = [
@@ -23,7 +24,16 @@ const HomePage = (props) => {
   //   //send request to server
   //   setLoadedMeetings(MyMeetings);
   // },[])
-  return <MeetingList meetings={props.meeting} />;
+  return (
+    <>
+      {" "}
+      <Head>
+        <title>Meeting list</title>
+        <meta name="description" content="view all list of your meetings"/>
+      </Head>
+      <MeetingList meetings={props.meeting} />
+    </>
+  );
 };
 
 //pre render

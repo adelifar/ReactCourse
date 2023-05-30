@@ -1,9 +1,15 @@
-import { useRouter } from "next/router";
 import MeetingDetail from "../../components/meetings/MeetingDetail";
 import fsPromise from 'fs/promises';
+import Head from "next/head";
 
 const MeetingDetailsPage = (props) => {
-  return <MeetingDetail {...props.meeting} />;
+  return <>
+  <Head>
+    <title>{props.meeting.title}</title>
+    <meta name="description" content={props.meeting.description}/>
+  </Head>
+  <MeetingDetail {...props.meeting} />
+  </>
 };
 
 
@@ -19,7 +25,7 @@ export const getStaticProps = async (context) => {
   return {
     props: {
       meeting: meeting,
-    },
+    },revalidate:10
   };
 };
 export const getStaticPaths = async () => {
@@ -28,7 +34,7 @@ export const getStaticPaths = async () => {
   const savedData=JSON.parse(jsonData);
   
   return {
-    fallback: false,
+    fallback: 'blocking',
     paths: savedData.map(meeting=>({params:{meetingId:meeting.id.toString()}}))
     // [{ params: { meetingId: "1" } }, { params: { meetingId: "2" } }],
   };
