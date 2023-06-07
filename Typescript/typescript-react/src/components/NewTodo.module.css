@@ -1,0 +1,33 @@
+.form{
+    width: 40rem;;
+    margin: 2rem auto;
+}
+.form label{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.form input{
+    display: block;
+    width: 100%;
+    font:inherit;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 0.5rem;
+
+}
+.form button{
+    font:inherit;
+    background-color: #b1a113;
+    border:1px solid #b1a113;
+    color: #201d0f;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.form button:hover,
+.form button:active{
+    background-color: #b1b113;
+    border-color: #b1b113;
+}
