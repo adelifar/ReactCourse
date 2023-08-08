@@ -1,0 +1,19 @@
+.button{
+    padding: 0.5rem 1.5rem !important;
+    border: 1px solid #8b005d !important;
+    color: white !important;
+    background: #8b005d !important;
+    box-shadow: 0 0 4px rgba(0,0,0,0.26) !important;
+    cursor: pointer !important;
+}
+.button:focus{
+    outline: none !important;
+}
+.button:hover, .button:active{
+    background: #eb50ad !important;
+}
+@media (max-width: 768px) {
+    .button{
+        width: 100%;
+    }
+}
