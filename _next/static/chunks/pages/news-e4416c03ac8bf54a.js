@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[134],{2616:function(n,e,u){(window.__NEXT_P=window.__NEXT_P||[]).push(["/news",function(){return u(3582)}])},3582:function(n,e,u){"use strict";u.r(e);var s=u(5893);let _=()=>(0,s.jsx)("h1",{children:"This is News page!"});e.default=_}},function(n){n.O(0,[774,888,179],function(){return n(n.s=2616)}),_N_E=n.O()}]);
